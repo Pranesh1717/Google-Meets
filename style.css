@@ -1,0 +1,143 @@
+/* =========================================================
+   THEME: change these values to restyle the whole app.
+   ========================================================= */
+:root {
+  --bg: #fbefe1;        /* page background: warm peach */
+  --card: #fffaf3;      /* cards and inputs */
+  --ink: #3a1d14;       /* main text: deep brown */
+  --mute: #7d5f52;      /* secondary text */
+  --line: #ecd3bb;      /* borders */
+  --soft: #f6dcc0;      /* alarm bar background */
+  --brand: #7a2e1d;     /* hero card and primary buttons: deep maroon-brown */
+  --onbrand: #fff6ec;   /* text on brand colour */
+  --go: #f4a51c;        /* Join buttons: saffron */
+  --ongo: #3a1d14;      /* text on Join buttons */
+  --ok: #4d7a4a;        /* "alarms on" and selected days: leaf green */
+  --bad: #b3261e;       /* delete */
+  --radius: 18px;
+  --font-body: "Atkinson Hyperlegible", Verdana, "Segoe UI", system-ui, sans-serif;
+  --font-head: "Fraunces", Georgia, "Times New Roman", serif;
+
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1f130e; --card: #2c1b14; --ink: #fbeadb; --mute: #c9a994;
+    --line: #4a3126; --soft: #3a251c; --brand: #f4a51c; --onbrand: #2a140c;
+    --go: #f4a51c; --ongo: #2a140c; --ok: #9ccb94; --bad: #ff9c92;
+  }
+}
+
+html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font: 18px/1.55 var(--font-body);
+}
+main { max-width: 760px; margin: 0 auto; padding: 22px 16px 80px; }
+
+h1, h2, .hero h2 { font-family: var(--font-head); font-weight: 700; line-height: 1.2; }
+h1 { font-size: 2rem; margin: 0; }
+h2 { font-size: 1.4rem; margin: 30px 0 10px; }
+.greeting { margin: 0 0 2px; color: var(--brand); font-weight: 700; }
+.date { color: var(--mute); margin: 2px 0 0; }
+.muted { color: var(--mute); }
+.top-gap { margin-top: 8px; }
+
+header { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px; flex-wrap: wrap; }
+
+/* ---------- buttons ---------- */
+button, input, select, textarea { font: inherit; color: inherit; }
+button {
+  cursor: pointer; border: 2px solid var(--line); background: var(--card);
+  border-radius: 14px; padding: 10px 18px; min-height: 48px;
+}
+button:focus-visible, input:focus-visible, select:focus-visible,
+textarea:focus-visible, a:focus-visible { outline: 3px solid var(--go); outline-offset: 2px; }
+.primary { background: var(--brand); color: var(--onbrand); border-color: var(--brand); font-weight: 700; }
+.join {
+  background: var(--go); color: var(--ongo); border: 2px solid var(--go);
+  font-weight: 700; text-decoration: none; display: inline-flex;
+  align-items: center; justify-content: center; border-radius: 14px;
+  padding: 10px 24px; min-height: 48px;
+}
+.small { min-height: 40px; padding: 6px 14px; font-size: .95rem; }
+.danger { color: var(--bad); }
+
+/* ---------- alarm bar ---------- */
+.bar {
+  display: flex; gap: 12px; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; background: var(--soft); border-radius: 16px;
+  padding: 12px 16px; margin: 18px 0;
+}
+.bar p { margin: 0; }
+.on { color: var(--ok); font-weight: 700; }
+
+/* ---------- next meeting ---------- */
+.hero { background: var(--brand); color: var(--onbrand); border-radius: 24px; padding: 26px; margin: 16px 0; }
+.hero .lbl { opacity: .85; margin: 0; }
+.hero h2 { font-size: 2rem; margin: 4px 0 6px; }
+.hero .when { font-size: 1.2rem; margin: 0 0 18px; }
+.hero .count { font-weight: 700; }
+.hero.empty { background: var(--card); color: var(--ink); border: 2px dashed var(--line); }
+.hero.empty h2 { color: var(--ink); }
+
+/* ---------- today list ---------- */
+.row {
+  display: flex; gap: 12px; align-items: center; justify-content: space-between;
+  background: var(--card); border: 2px solid var(--line); border-radius: var(--radius);
+  padding: 12px 16px; margin: 8px 0; flex-wrap: wrap;
+}
+.row.past { opacity: .55; }
+.row .t { font-weight: 700; min-width: 5.5rem; }
+.row .n { flex: 1; min-width: 140px; }
+.row .n small { display: block; color: var(--mute); }
+
+/* ---------- groups and cards ---------- */
+.chips { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0; }
+.chip { border-radius: 99px; min-height: 40px; padding: 6px 16px; }
+.chip[aria-pressed="true"] { background: var(--brand); color: var(--onbrand); border-color: var(--brand); }
+.card { background: var(--card); border: 2px solid var(--line); border-radius: var(--radius); padding: 18px; margin: 10px 0; }
+.card .top { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; align-items: flex-start; }
+.card h3 { margin: 0; font-family: var(--font-head); font-size: 1.2rem; }
+.meta { color: var(--mute); margin: 2px 0 10px; }
+.acts { display: flex; gap: 8px; flex-wrap: wrap; }
+.acts.center { justify-content: center; }
+
+/* ---------- form ---------- */
+form { display: grid; gap: 14px; }
+label { display: grid; gap: 4px; font-weight: 700; }
+.lab { font-weight: 700; margin-bottom: 6px; }
+label span.h { font-weight: 400; color: var(--mute); font-size: .95rem; }
+input, select, textarea {
+  border: 2px solid var(--line); background: var(--bg); border-radius: 14px;
+  padding: 10px 12px; min-height: 48px; width: 100%;
+}
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.days { display: flex; gap: 6px; flex-wrap: wrap; }
+.days button { min-width: 54px; padding: 6px 8px; }
+.days button[aria-pressed="true"] { background: var(--ok); color: #fff; border-color: var(--ok); }
+details { margin-top: 30px; }
+summary { cursor: pointer; font-weight: 700; }
+
+/* ---------- alarm popup ---------- */
+#ring {
+  position: fixed; inset: 0; background: rgba(40, 15, 8, .92);
+  display: none; align-items: center; justify-content: center; padding: 20px; z-index: 50;
+}
+#ring.show { display: flex; }
+#ring .box { background: var(--card); border-radius: 28px; padding: 28px; max-width: 440px; width: 100%; text-align: center; }
+#ring h2 { font-size: 1.9rem; margin: 8px 0; }
+#ring .join { width: 100%; margin: 12px 0 10px; font-size: 1.3rem; min-height: 62px; }
+#ring .bell { font-size: 3rem; animation: shake .6s infinite; }
+@keyframes shake { 0%, 100% { transform: rotate(-12deg); } 50% { transform: rotate(12deg); } }
+@media (prefers-reduced-motion: reduce) { #ring .bell { animation: none; } }
+
+@media (max-width: 520px) {
+  .two { grid-template-columns: 1fr; }
+  .hero h2 { font-size: 1.6rem; }
+  h1 { font-size: 1.7rem; }
+}

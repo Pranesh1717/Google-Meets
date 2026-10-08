@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#7a2e1d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>My Meetings</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <p class="greeting" id="greeting"></p>
+      <h1>My Meetings</h1>
+      <p class="date" id="today"></p>
+    </div>
+    <button class="primary" id="addTop">Add a meeting</button>
+  </header>
+
+  <div class="bar" id="alarmBar"></div>
+  <section id="hero"></section>
+
+  <h2>Today</h2>
+  <div id="todayList"></div>
+
+  <h2>All meetings</h2>
+  <div class="chips" id="filters" role="group" aria-label="Filter by group"></div>
+  <div id="all"></div>
+
+  <h2 id="formTitle">Add a meeting</h2>
+  <form class="card" id="form" autocomplete="off">
+    <label>Link or WhatsApp message
+      <span class="h">Paste the whole WhatsApp message. The link is picked out for you.</span>
+      <textarea id="f-link" rows="3" required></textarea>
+    </label>
+    <label>Meeting name
+      <input id="f-title" required placeholder="e.g. Morning satsang">
+    </label>
+    <div class="two">
+      <label>Time <input id="f-time" type="time" required></label>
+      <label>Alarm before
+        <select id="f-lead">
+          <option value="0">No alarm</option>
+          <option value="5" selected>5 minutes</option>
+          <option value="10">10 minutes</option>
+          <option value="15">15 minutes</option>
+          <option value="30">30 minutes</option>
+        </select>
+      </label>
+    </div>
+    <div>
+      <div class="lab">Which days?</div>
+      <div class="days" id="f-days"></div>
+    </div>
+    <label>Group <span class="h">Optional. For example Prayer, Family, Classes. Type a new name any time.</span>
+      <input id="f-group" list="groups" placeholder="Group name">
+      <datalist id="groups"></datalist>
+    </label>
+    <label>Notes <span class="h">Optional. Passcode, who hosts, and so on.</span>
+      <input id="f-notes">
+    </label>
+    <div class="acts">
+      <button class="primary" type="submit" id="saveBtn">Save meeting</button>
+      <button type="button" id="cancelEdit" hidden>Cancel</button>
+    </div>
+  </form>
+
+  <details>
+    <summary>Backup and restore</summary>
+    <p class="muted">Meetings are saved in this browser only. Copy this text to keep a backup, or paste a backup here to restore it on another device.</p>
+    <textarea id="bk" rows="5"></textarea>
+    <div class="acts top-gap">
+      <button id="bkExport">Show backup</button>
+      <button id="bkImport">Restore from text</button>
+    </div>
+    <p id="bkMsg" class="muted" role="status"></p>
+  </details>
+</main>
+
+<div id="ring" role="alertdialog" aria-modal="true" aria-labelledby="ringT">
+  <div class="box">
+    <div class="bell" aria-hidden="true">🔔</div>
+    <p class="muted" id="ringWhen"></p>
+    <h2 id="ringT"></h2>
+    <a class="join" id="ringJoin" target="_blank" rel="noopener">Join meeting</a>
+    <div class="acts center">
+      <button id="ringSnooze">Remind me in 1 minute</button>
+      <button id="ringStop">Stop alarm</button>
+    </div>
+  </div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
